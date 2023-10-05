@@ -1,7 +1,18 @@
 import type { ActJWTClaim } from './jwt';
+import type { OrganizationPermission } from './organizationMembership';
 import type { ClerkResource } from './resource';
 import type { TokenResource } from './token';
 import type { UserResource } from './user';
+
+export type IsAuthorized = (isAuthorizedParams: IsAuthorizedParams) => Promise<IsAuthorizedReturnValues>;
+
+interface IsAuthorizedParams {
+  // eslint-disable-next-line
+  permission?: OrganizationPermission | (string & {});
+  role?: string;
+}
+
+type IsAuthorizedReturnValues = boolean;
 
 export interface SessionResource extends ClerkResource {
   id: string;
@@ -18,6 +29,7 @@ export interface SessionResource extends ClerkResource {
   remove: () => Promise<SessionResource>;
   touch: () => Promise<SessionResource>;
   getToken: GetToken;
+  isAuthorized: IsAuthorized;
   clearCache: () => void;
   createdAt: Date;
   updatedAt: Date;

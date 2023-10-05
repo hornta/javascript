@@ -6,6 +6,7 @@ import type {
   MembershipRole,
   OrganizationMembershipJSON,
   OrganizationMembershipResource,
+  OrganizationPermission,
   PublicUserData,
 } from '@clerk/types';
 
@@ -18,6 +19,8 @@ export class OrganizationMembership extends BaseResource implements Organization
   publicMetadata: OrganizationMembershipPublicMetadata = {};
   publicUserData!: PublicUserData;
   organization!: Organization;
+  // eslint-disable-next-line
+  permissions: (OrganizationPermission | (string & {}))[] = [];
   role!: MembershipRole;
   createdAt!: Date;
   updatedAt!: Date;
@@ -107,6 +110,7 @@ export class OrganizationMembership extends BaseResource implements Organization
     if (data.public_user_data) {
       this.publicUserData = new OrganizationPublicUserData(data.public_user_data);
     }
+    this.permissions = Array.isArray(data.permissions) ? [...data.permissions] : [];
     this.role = data.role;
     this.createdAt = unixEpochToDate(data.created_at);
     this.updatedAt = unixEpochToDate(data.updated_at);
