@@ -4,7 +4,7 @@ run-name: Production release PR
 on:
   push:
     branches:
-      - main
+      - clerk-v4
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -53,7 +53,7 @@ jobs:
               owner: 'clerkinc',
               repo: 'cloudflare-workers',
               workflow_id: 'prepare-prod-clerkjs-proxy-pr.yml',
-              ref: 'main',
+              ref: 'clerk-v4',
               inputs: { version: clerkjsVersion }
             })
 

@@ -4,7 +4,7 @@ run-name: Staging release from ${{ github.ref_name }}
 on:
   push:
     branches:
-      - main
+      - clerk-v4
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -52,7 +52,7 @@ jobs:
                 owner: 'clerkinc',
                 repo: 'cloudflare-workers',
                 workflow_id: 'release-staging-clerkjs-proxy.yml',
-                ref: 'main',
+                ref: 'clerk-v4',
                 inputs: { version: clerkjsVersion }
               })
             }
@@ -63,7 +63,7 @@ jobs:
                 owner: 'clerkinc',
                 repo: 'accounts',
                 workflow_id: 'release-staging.yml',
-                ref: 'main',
+                ref: 'clerk-v4',
                 inputs: { version: nextjsVersion }
               })
             }
