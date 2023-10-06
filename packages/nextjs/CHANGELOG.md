@@ -1,5 +1,20 @@
 # Change Log
 
+## 4.25.4
+
+### Patch Changes
+
+- Introduce new `*EmailLink*` helpers that will replace the `*MagicLink*` helpers. ([#1833](https://github.com/clerkinc/javascript/pull/1833)) by [@dimkl](https://github.com/dimkl)
+
+  Also marked all the `*MagicLink*` as deprecated using JSDocs.
+
+- Updated dependencies [[`7f4d4b942`](https://github.com/clerkinc/javascript/commit/7f4d4b942e8834462cdc0976b106d9739c345f6b)]:
+  - @clerk/shared@0.24.4
+  - @clerk/clerk-react@4.26.4
+  - @clerk/types@3.54.1
+  - @clerk/backend@0.30.4
+  - @clerk/clerk-sdk-node@4.12.13
+
 ## 4.25.3
 
 ### Patch Changes

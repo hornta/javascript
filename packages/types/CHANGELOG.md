@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.54.1
+
+### Patch Changes
+
+- Introduce new `*EmailLink*` helpers that will replace the `*MagicLink*` helpers. ([#1833](https://github.com/clerkinc/javascript/pull/1833)) by [@dimkl](https://github.com/dimkl)
+
+  Also marked all the `*MagicLink*` as deprecated using JSDocs.
+
 ## 3.54.0
 
 ### Minor Changes
