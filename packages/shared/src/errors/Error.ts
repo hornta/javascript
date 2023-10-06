@@ -1,5 +1,7 @@
 import type { ClerkAPIError, ClerkAPIErrorJSON } from '@clerk/types';
 
+import { deprecated } from '../utils';
+
 interface ClerkAPIResponseOptions {
   data: ClerkAPIErrorJSON[];
   status: number;
@@ -146,6 +148,7 @@ export class MagicLinkError extends Error {
     super(code);
     this.code = code;
     Object.setPrototypeOf(this, MagicLinkError.prototype);
+    deprecated('MagicLinkError', 'Use `EmailLinkError` instead.');
   }
 }
 
@@ -164,6 +167,7 @@ export class EmailLinkError extends Error {
  * @deprecated Use `isEmailLinkError` instead.
  */
 export function isMagicLinkError(err: Error): err is MagicLinkError {
+  deprecated('isMagicLinkError', 'Use `isEmailLinkError` instead.');
   return err instanceof MagicLinkError;
 }
 
@@ -178,6 +182,7 @@ export const MagicLinkErrorCode = {
   Expired: 'expired',
   Failed: 'failed',
 };
+// TODO(@dimkl): Add deprecation warning for MagicLinkErrorCode
 
 export const EmailLinkErrorCode = {
   Expired: 'expired',
