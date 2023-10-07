@@ -94,6 +94,8 @@ import type { DevBrowserHandler } from './devBrowserHandler';
 import createDevBrowserHandler from './devBrowserHandler';
 import {
   clerkErrorInitFailed,
+  clerkInvalidSignInUrlFormat,
+  clerkInvalidSignInUrlOrigin,
   clerkMissingDevBrowserJwt,
   clerkMissingProxyUrlAndDomain,
   clerkMissingSignInUrlAsSatellite,
@@ -1280,12 +1282,26 @@ export default class Clerk implements ClerkInterface {
     if (!this.isSatellite) {
       return;
     }
+
     if (this.#instanceType === 'development' && !this.#options.signInUrl) {
       clerkMissingSignInUrlAsSatellite();
     }
 
     if (!this.proxyUrl && !this.domain) {
       clerkMissingProxyUrlAndDomain();
+    }
+
+    if (this.#options.signInUrl) {
+      let signInUrl: URL;
+      try {
+        signInUrl = new URL(this.#options.signInUrl);
+      } catch {
+        clerkInvalidSignInUrlFormat();
+      }
+
+      if (signInUrl.hostname === this.domain.replace('clerk.', '')) {
+        clerkInvalidSignInUrlOrigin();
+      }
     }
   };
 
