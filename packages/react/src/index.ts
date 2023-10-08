@@ -23,3 +23,4 @@ export {
 } from './errors';
 export { useMagicLink } from './hooks/useMagicLink';
 export { useEmailLink } from './hooks/useEmailLink';
+export { IsomorphicClerk } from './isomorphicClerk';
